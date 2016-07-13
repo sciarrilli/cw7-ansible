@@ -1,17 +1,17 @@
 ---
 
-  - name: PUSH CLEAN CONFIGS TO SPINE SWITCHES
+  - name: ebgp fabric
     hosts: all
     gather_facts: no
     connection: local
 
     tasks:
 
-      - name: BUILD CONFIGURATION FILES
-        template: src=templates/spine-vsr.j2 dest=configs/{{ inventory_hostname }}.cfg
+      - name: template'tize configs
+        template: src=templates/vsr_temp.j2 dest=configs/{{ inventory_hostname }}.cfg
         tags: build
 
-      - name: INSTALL AND ACTIVATE CONFIG FILE AS NEW RUNNING CONFIG
+      - name: comware install config
         comware_install_config:
           config_file='./configs/{{ inventory_hostname }}.cfg'
           diff_file='./configs/diffs/{{ inventory_hostname }}.diff'
@@ -21,7 +21,7 @@
           hostname={{ inventory_hostname }}
         tags: push
 
-      - name: Activate new config file (workaround for commit_changes not working)
+      - name: apply new config
         comware_command:
           command:
             - configuration replace file flash:/{{ inventory_hostname }}.cfg
