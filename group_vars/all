@@ -1,0 +1,12 @@
+#management interfaces
+mgmt:
+   spine01:
+      hostname: spine01
+      management_ip: "192.168.0.21 255.255.255.0"
+      loopback0_ip: "10.0.0.21 255.255.255.255"
+      s1l1: "10.0.1.21 255.255.255.0"
+   leaf01:
+      hostname: leaf01
+      management_ip: "192.168.0.11 255.255.255.0"
+      loopback0_ip: "10.0.0.11 255.255.255.255"
+      s1l1: "10.0.1.11 255.255.255.0"
